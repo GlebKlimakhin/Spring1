@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Box table</h1>
+    <span th:if="${products.isEmpty()}">Продуктов нет</span>
+    <table class="table" th:if="${!products.isEmpty()}">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Цвет</td>
+            <td>Размер</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.getId()}"/>
+            <td th:text="${p.getTitle()}"/>
+            <td th:text="${p.getCost()}"/>
+        </tr>
+        </tbody>
+        </table>
+
+    <form th:action="@{'/add'}" method="post">
+        <label>id</label>
+        <input type="number" name="id">
+        <label>title</label>
+        <input type="text" name="title">
+        <label>cost</label>
+        <input type="number" name="cost">
+        <button class="btn btn-primary" type="submit">Создать</button>
+    </form>
+</div>
+</body>
+</html>
